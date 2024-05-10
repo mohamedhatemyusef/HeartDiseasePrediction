@@ -1,0 +1,179 @@
+﻿@model HeartDiseasePrediction.ViewModel.PredictionDetailsViewModel
+@{
+    ViewData["Title"] = "Medical Tests Details Page";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    .containerr {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+<section>
+    <div class="containerr">
+        <h1>Medical Test Details</h1>
+        <table>
+            <tr>
+                <th>Test Name</th>
+                <th>Normal</th>
+                <th>Result</th>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td></td>
+                <td>@Model.Gender</td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td></td>
+                <td>@Model.Age years</td>
+            </tr>
+            <tr>
+                <td>Diastolic Blood Pressure</td>
+                <td>80 mmHg</td>
+                <td>@Model.DiastolicBloodPressure mmHg</td>
+            </tr>
+            <tr>
+                <td>Systolic Blood Pressure</td>
+                <td>120 mmHg</td>
+                <td>@Model.SystolicBloodPressure mmHg</td>
+            </tr>
+            <tr>
+                <td>Blood Pressure Medicine</td>
+                <td></td>
+                @if (Model.BloodPressureMedicine == 1)
+                {
+                    <td>yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            </tr>
+            <tr>
+                <td>Diabetes</td>
+                <td></td>
+                @if (Model.Diabetes == 1)
+                {
+                    <td>yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            </tr>
+            <tr>
+                <td>BMI</td>
+                <td>18.5 kg/m² and 24.9 kg/m²</td>
+                <td>@Model.BMI kg/m²</td>
+            </tr>
+            <tr>
+                <td>Cholesterol Level</td>
+                <td>Less than 200 mg/dL</td>
+                <td>@Model.CholesterolLevel mg/dL</td>
+            </tr>
+            <tr>
+                <td>Glucose Level</td>
+                <td>Less than or equal to 100 mg/dL</td>
+                <td>@Model.GlucoseLevel mg/dL</td>
+            </tr>
+            <tr>
+                <td>Smoking</td>
+                <td></td>
+                @if (Model.Smoking == 1)
+                {
+                    <td>yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            </tr>
+            <tr>
+                <td>Number Of Cigarettes</td>
+                <td></td>
+                <td>@Model.NumberOfCigarettes per day</td>
+            </tr>
+            <tr>
+                <td>Prevalent hypertension</td>
+                <td></td>
+                @if(Model.Prevalenthypertension == 1)
+                {
+                    <td>yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            </tr>
+            <tr>
+                <td>Prevalent Stroke</td>
+                <td></td>
+                @if (Model.PrevalentStroke == 1)
+                {
+                    <td>yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            </tr>
+            <tr>
+                <td><strong>Prediction</strong></td>
+                <td></td>
+                @if (Model.Prediction == 1)
+                {
+                    <td>High Heart Disease</td>
+                } 
+                else if (Model.Prediction == 0)
+                {
+                    <td>No Heart Disease</td>
+                }
+                else
+                {
+                    <td>@Model.Prediction</td>
+                }
+            </tr>
+            <tr>
+                <td><strong>Probability</strong></td>
+                <td></td>
+                <td>@Model.Probability %</td>
+            </tr>
+        </table>
+    </div>
+
+</section>

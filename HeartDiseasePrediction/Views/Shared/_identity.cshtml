@@ -1,0 +1,74 @@
+﻿@using Database.Entities;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (User.Identity.IsAuthenticated && SignInManager.IsSignedIn(User))
+{
+	<a class="btn btn-outline-light" asp-action="Update" asp-controller="Account">
+		@if (User.FindFirst("UserProfileImage").Value.Equals(""))
+		{
+			<img src="~/images/istockphoto-1223671392-612x612-1.jpg"
+		   class="rounded-circle"
+		   height="24"
+		   alt="Portrait of a User"
+		   loading="lazy" />
+		}
+		else
+		{
+			<img src="@User.FindFirst("UserProfileImage").Value"
+				 class="rounded-circle"
+				 height="24"
+				 alt="Portrait of a User"
+				 loading="lazy" />
+			
+		}
+		@if (User.IsInRole("MedicalAnalyst"))
+		{
+
+			@(User.FindFirst("LabName")?.Value)
+
+		}
+		else
+		{
+			@(
+				User.FindFirst("UserFirstName").Value + " " + User.FindFirst("UserLastName").Value
+				)
+		}
+
+	</a>
+		<span style="padding-left:10px"></span>
+	<a class="btn btn-outline-info text-white" asp-controller="Account" asp-action="Logout" onclick="ConfirmLogout()">
+		<i class="fa fa-sign-out" aria-hidden="true"></i>
+		<span>
+			Log Out
+		</span>
+	</a>
+	
+}
+else
+{
+	<a asp-controller="Account" asp-action="Login">
+		<i class="fa fa-sign-in" aria-hidden="true"></i>
+		<span>
+			Login
+		</span>
+	</a>
+	<a asp-controller="Account" asp-action="RegisterOfUser">
+		<i class="fa fa-user" aria-hidden="true"></i>
+		<span>
+			Sign Up
+		</span>
+	</a>
+
+}
+
+<script>
+	function ConfirmLogout() {
+		document.getElementsByClassName("");
+		var accept = confirm("Are You Sure to Log Out?");
+		if (accept == false) {
+			event.preventDefault();
+		}
+	}
+</script>
